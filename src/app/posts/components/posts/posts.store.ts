@@ -77,4 +77,18 @@ export class PostsStore extends ComponentStore<PostsComponentState> {
       posts: [],
     });
   }
+
+  ngrxOnStoreInit() {
+    console.log('Posts >STORE< init')
+  }
+
+  ngrxOnStateInit() {
+    console.log('Posts <STATE> init')
+  }
+
+  override ngOnDestroy(): void {
+    // 👇 add this line
+    super.ngOnDestroy();
+    console.log('Posts onDestroy')
+  }
 }

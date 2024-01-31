@@ -8,10 +8,10 @@ export class PostsService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<PostInterface[]> {
-    return this.http.get<PostInterface[]>('http://localhost:3004/posts');
+    return this.http.get<PostInterface[]>('http://localhost:3000/posts');
   }
 
   createPost(post: { title: string }): Observable<PostInterface> {
-    return this.http.post<PostInterface>('http://localhost:3004/posts', post);
+    return this.http.post<PostInterface>('http://localhost:3000/posts', post);
   }
 }

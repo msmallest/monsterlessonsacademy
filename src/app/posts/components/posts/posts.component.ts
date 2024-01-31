@@ -1,35 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AppStateInterface } from 'src/app/types/appState.interface';
-import * as PostsActions from '../../store/actions';
-import {
-  errorSelector,
-  isLoadingSelector,
-  postsSelector,
-} from '../../store/selectors';
-import { PostInterface } from '../../types/post.interface';
 import { PostsStore } from './posts.store';
+import { provideComponentStore } from '@ngrx/component-store';
+import { MostsStore } from './mosts.store';
 
 @Component({
   selector: 'posts',
-  templateUrl: './posts.component.html',
-  providers: [PostsStore],
+  template: `
+    <h1>Top level</h1>
+    <br />
+    <br />
+    <router-outlet></router-outlet>
+  `,
+  providers: [provideComponentStore(PostsStore), provideComponentStore(MostsStore)]
 })
 export class PostsComponent implements OnInit {
-  addForm = this.fb.nonNullable.group({
-    title: '',
-  });
-  vm$ = this.postsStore.vm$;
-
-  constructor(private fb: FormBuilder, private postsStore: PostsStore) {}
+  constructor(private postsStore: PostsStore, private mostsStore: MostsStore) {}
 
   ngOnInit(): void {
     this.postsStore.getPosts();
-  }
-  onAdd(): void {
-    this.postsStore.createPost(this.addForm.getRawValue());
-    this.addForm.reset();
+    this.mostsStore.getMosts();
+    this.mostsStore.getMostsOptions();
   }
 }
