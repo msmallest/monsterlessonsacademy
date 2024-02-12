@@ -38,6 +38,7 @@ export class PostsStore extends ComponentStore<PostsComponentState> {
     posts: [...state.posts, post],
   }));
 
+  // This
   getPosts = this.effect((trigger$) => {
     return trigger$.pipe(
       tap(() => {

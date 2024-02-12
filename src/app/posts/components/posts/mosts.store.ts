@@ -35,7 +35,7 @@ export class MostsStore extends ComponentStore<MostsComponentState> {
     isLoading: false,
     mosts,
   }));
-  addPost = this.updater((state, most: MostInterface) => ({
+  addMost = this.updater((state, most: MostInterface) => ({
     ...state,
     isLoading: false,
     mosts: [...state.mosts, most],
@@ -86,7 +86,7 @@ export class MostsStore extends ComponentStore<MostsComponentState> {
       exhaustMap((most) => {
         return this.mostsService.createMost(most).pipe(
           tapResponse(
-            (most) => this.addPost(most),
+            (most) => this.addMost(most),
             (err: HttpErrorResponse) => this.setError(err)
           )
         );

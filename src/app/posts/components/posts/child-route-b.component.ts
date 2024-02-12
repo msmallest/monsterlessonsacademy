@@ -5,7 +5,7 @@ import { MostsStore } from './mosts.store';
 @Component({
   selector: 'app-child-route-b',
   template: `
-    <b>ROUTE B</b>
+    <b>Mosts</b>
     <ng-container *ngIf="vm$ | async as vm">
       <h1>Mosts Page</h1>
 

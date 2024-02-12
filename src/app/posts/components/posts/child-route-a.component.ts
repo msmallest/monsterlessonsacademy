@@ -5,7 +5,7 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-child-route-a',
   template: `
-  <b>ROUTE A</b>
+  <b>Posts</b>
     <ng-container *ngIf="vm$ | async as vm">
       <h1>Posts Page</h1>
 
